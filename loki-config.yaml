@@ -19,7 +19,7 @@ ingester:
 schema_config:
   configs:
     - from: 2025-02-26
-      store: tsdb_shipper
+      store: tsdb
       object_store: s3
       schema: v13
       index:
