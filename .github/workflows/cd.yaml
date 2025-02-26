@@ -11,7 +11,8 @@ env:
   ECS_SERVICE: ${{ vars.ECS_SERVICE }}
   ECS_CLUSTER: ${{ vars.ECS_CLUSTER }}
   ECS_TASK_DEFINITION_ARN: ${{ secrets.ECS_TASK_DEFINITION_ARN }}
-  CONTAINER_NAME: ${{ vars.CONTAINER_NAME }}
+  LOKI_CONTAINER_NAME: ${{ vars.LOKI_CONTAINER_NAME }}
+  NGINX_CONTAINER_NAME: ${{ vars.NGINX_CONTAINER_NAME }}
   AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   NGINX_HTPASSWD: ${{ secrets.NGINX_HTPASSWD }}
@@ -75,7 +76,7 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition-arn: ${{ env.ECS_TASK_DEFINITION_ARN }}
-          container-name: ${{ env.CONTAINER_NAME }}
+          container-name: ${{ env.LOKI_CONTAINER_NAME }}
           image: ${{ steps.build-loki-image.outputs.image }}
 
       - name: Fill in the new Nginx image ID in the Amazon ECS task definition
@@ -83,7 +84,7 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition-arn: ${{ env.ECS_TASK_DEFINITION_ARN }}
-          container-name: ${{ env.CONTAINER_NAME }}
+          container-name: ${{ env.NGINX_CONTAINER_NAME }}
           image: ${{ steps.build-nginx-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
