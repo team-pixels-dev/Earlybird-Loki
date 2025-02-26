@@ -71,7 +71,7 @@ jobs:
           echo "image=$ECR_REGISTRY/$NGINX_ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
       - name: Fill in the new Loki image ID in the Amazon ECS task definition
-        id: task-def
+        id: task-def-loki
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition-arn: ${{ env.ECS_TASK_DEFINITION_ARN }}
@@ -79,7 +79,7 @@ jobs:
           image: ${{ steps.build-loki-image.outputs.image }}
 
       - name: Fill in the new Nginx image ID in the Amazon ECS task definition
-        id: task-def
+        id: task-def-nginx
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition-arn: ${{ env.ECS_TASK_DEFINITION_ARN }}
