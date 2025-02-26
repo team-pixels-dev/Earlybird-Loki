@@ -30,9 +30,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create .htpasswd
+      - name: Download .htpasswd
         run: |
-          echo "${{ env.NGINX_HTPASSWD }}" > ./.htpasswd
+          aws s3 cp s3://earlybird-nginx-htpasswd/.htpasswd .
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
