@@ -28,12 +28,9 @@ schema_config:
 
 storage_config:
   boltdb_shipper:
-    shared_store: s3
     active_index_directory: /loki/boltdb-shipper-active
     cache_location: /loki/boltdb-shipper-cache
     cache_ttl: 24h
     resync_interval: 5m
-    flush_interval: 1m
-    query_ready_duration: 1m
   aws:
     s3: s3://${AWS_ACCESS_KEY}:${AWS_SECRET_ACCESS_KEY}@ap-northeast-2/earlybird-loki
