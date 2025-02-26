@@ -1,5 +1,5 @@
 FROM grafana/loki
 
-COPY ./loki-config.yml /etc/loki/config.yaml
+COPY ./loki-config.yaml /etc/loki/config.yaml
 
 CMD ["-config.file=/etc/loki/config.yaml"]
