@@ -9,7 +9,7 @@ common:
 limits_config:
   allow_structured_metadata: true
   volume_enabled: true
-  max_query_length: 10y
+  max_query_length: 12000h
 
 ingester:
   lifecycler:
